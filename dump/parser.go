@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/GoWebProd/go-mysql/mysql"
 	"github.com/pingcap/errors"
-	"github.com/siddontang/go-mysql/mysql"
 )
 
 var (

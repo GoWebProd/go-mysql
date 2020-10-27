@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net"
 
+	. "github.com/GoWebProd/go-mysql/mysql"
 	"github.com/pingcap/errors"
-	. "github.com/siddontang/go-mysql/mysql"
 )
 
 type MysqlGTIDHandler struct {
