@@ -185,6 +185,26 @@ func (c *Conn) writeValue(value interface{}) error {
 		} else {
 			return c.writeOK(v)
 		}
+	case []*Result:
+		if len(v) == 0 {
+			return c.writeValue(nil)
+		}
+
+		c.status |= SERVER_MORE_RESULTS_EXISTS
+
+		for i, res := range v {
+			if i == len(v) - 1 {
+				c.status &= ^SERVER_MORE_RESULTS_EXISTS
+			}
+
+			if err := c.writeValue(res); err != nil {
+				c.status &= ^SERVER_MORE_RESULTS_EXISTS
+
+				return err
+			}
+		}
+
+		return nil
 	case []*Field:
 		return c.writeFieldList(v)
 	case *Stmt:

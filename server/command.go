@@ -13,7 +13,7 @@ type Handler interface {
 	UseDB(dbName string) error
 	//handle COM_QUERY command, like SELECT, INSERT, UPDATE, etc...
 	//If Result has a Resultset (SELECT, SHOW, etc...), we will send this as the response, otherwise, we will send Result
-	HandleQuery(query string) (*Result, error)
+	HandleQuery(query string) ([]*Result, error)
 	//handle COM_FILED_LIST command
 	HandleFieldList(table string, fieldWildcard string) ([]*Field, error)
 	//handle COM_STMT_PREPARE, params is the param number for this statement, columns is the column number
